@@ -1,0 +1,29 @@
+.header-home {
+  display: flex;
+  padding: 1rem 3rem;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  background-color: #1C1C2A;
+}
+
+.title-header {
+  font-size: 2rem;
+  cursor: default;
+}
+
+.nav-container {
+  display: flex;
+  gap: 3rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  transition: 0.2s ease;
+  font-size: 1.2rem;
+}
+
+.nav-link:hover {
+  color: #9CA3AF;
+}
