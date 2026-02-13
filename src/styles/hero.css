@@ -1,0 +1,24 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  margin: 10%;
+  align-items: center;
+}
+
+.title-hero {
+  font-size: 8rem;
+  display: flex;
+}
+
+.first {
+  color: #6D28D9;
+}
+
+.second {
+  color: #7C3AED;
+}
+
+.subtitle-hero {
+  font-size: 2.5rem;
+  font-weight: 400;
+}
