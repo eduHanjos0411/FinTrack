@@ -10,4 +10,6 @@ export function useValores(initalValues: Valor[]) {
   function addValor(novoValor: Valor) {
     setValores((prev) => [...prev, novoValor])
   }
+
+  function removeVAl
 }
