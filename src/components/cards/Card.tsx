@@ -1,6 +1,7 @@
 import type React from "react";
 
 import '../../styles/card.css'
+import { AddValueModal } from "../AddSaldoModal";
 
 interface cardProps {
   title: string;
@@ -16,7 +17,7 @@ export function Card({ title, subtitle, total, content }: cardProps) {
       <h3 className="card-title">{title}</h3>
       <h4 className="card-subtitle">{subtitle}</h4>
       <div className="card-total">{total}</div>
-      <button className="btn-card">Adicionar</button>
+      <button className="btn-card" onClick={AddValueModal}>Adicionar</button>
       <hr />
       <div className="card-content">{content}</div>
       </div>
