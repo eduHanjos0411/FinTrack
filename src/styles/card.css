@@ -1,0 +1,72 @@
+/** Estilo Principal **/
+.card-container {
+  background-color: #151521;
+  width: 250px;
+  height: 300px;
+  padding: 2rem;
+  line-height: 32px;
+  border-radius: 16px;
+  box-shadow: 1px 1px 8px rgba(167, 139, 250, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.card-title {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.card-subtitle {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.card-content {
+  color: white;
+  font-size: 20px;
+}
+.card-content {
+  color: white;
+}
+
+.btn-card {
+  border: none;
+  padding: 4px;
+  border-radius: 6px;
+  margin-top: 5px;
+  width: 80px;
+  background-color: #7c3aed;
+  color: white;
+  transition: 0.2s ease;
+}
+
+.btn-card:hover {
+  background-color: #8b5cf6;
+  cursor: pointer;
+}
+
+.card-list {
+  list-style: none;
+  color: #22c55e;
+}
+
+/** Estilo card saldo **/
+.card-saldo-text {
+  color: #22c55e;
+}
+
+/** Estilo card despesa **/
+.card-despesas-text {
+  color: #ef4444;
+}
+
+/** Estilo card investimento **/
+.card-investimento-text {
+  color: #3B82F6;
+}

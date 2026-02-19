@@ -1,0 +1,22 @@
+.container-dashboard {
+  display: flex;
+  flex-direction: column;
+  background-color: #1C1C2A;
+  width: 80%;
+  height: 100vh;
+  margin: auto;
+}
+
+.header-dashboard {
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+  align-items: center;
+  justify-content: center;
+}
