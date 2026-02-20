@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import { useValores } from "../hooks/useValores";
+import { useValores } from "../features/finance/hooks/useValores";
 
 interface FinanceContextType {
   saldo: ReturnType<typeof useValores>;

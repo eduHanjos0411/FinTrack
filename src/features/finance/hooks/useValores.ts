@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Valor } from "../types/valor";
-import { sumBy } from "../utils/sumBy";
+import { sumBy } from "../../../utils/sumBy";
 
 export function useValores(initalValues: Valor[]) {
   const [valores, setValores] = useState<Valor[]>(initalValues)

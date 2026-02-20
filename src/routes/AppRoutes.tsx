@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { Home } from "../pages/Home";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
-import { Dashboard } from "../pages/Dashboard";
+import { Dashboard } from "../pages/dashboard/Dashboard";
 
 export function AppRoutes() {
   return (

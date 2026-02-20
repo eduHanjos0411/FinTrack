@@ -1,7 +1,7 @@
 
 import '../styles/cardTable.css'
-import type { Valor } from "../types/valor"
-import { formatCurrency } from '../utils/formatCurrency'
+import type { Valor } from "../../features/finance/types/valor"
+import { formatCurrency } from '../../utils/formatCurrency'
 
 interface CardTableProps {
   items: Valor[]

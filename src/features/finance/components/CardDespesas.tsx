@@ -1,7 +1,7 @@
-import { useFinance } from "../../contexts/FinanceContext";
-import { CardTable } from "../CardTable";
-import { TotalDisplay } from "../TotalDisplay";
-import { Card } from "./Card";
+import { useFinance } from "../../../contexts/FinanceContext";
+import { CardTable } from "../../../components/ui/CardTable";
+import { TotalDisplay } from "./TotalDisplay";
+import { Card } from "../../../components/ui/Card";
 
 export function CardDespesas() {
   const {despesas} = useFinance()

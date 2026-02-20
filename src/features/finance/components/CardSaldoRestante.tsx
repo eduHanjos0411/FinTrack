@@ -1,6 +1,6 @@
-import { useFinance } from "../../contexts/FinanceContext";
-import { TotalDisplay } from "../TotalDisplay";
-import { Card } from "./Card";
+import { useFinance } from "../../../contexts/FinanceContext";
+import { TotalDisplay } from "./TotalDisplay";
+import { Card } from "../../../components/ui/Card";
 
 export function CardSaldoRestante() {
   const {saldo, despesas} = useFinance()
