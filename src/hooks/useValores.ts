@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import type { Valor } from "../types/valor";
 import { sumBy } from "../utils/sumBy";
 
@@ -11,5 +11,14 @@ export function useValores(initalValues: Valor[]) {
     setValores((prev) => [...prev, novoValor])
   }
 
-  function removeVAl
+  function removeValor(nome: string) {
+    setValores((prev) => prev.filter((item) => item.nome !== nome))
+  }
+
+  return {
+    valores,
+    total,
+    addValor,
+    removeValor
+  }
 }
