@@ -1,22 +1,24 @@
-import type React from "react"
 
 import '../styles/cardTable.css'
+import type { Valor } from "../types/valor"
+import { formatCurrency } from '../utils/formatCurrency'
 
 interface CardTableProps {
-  children: React.ReactNode
+  items: Valor[]
+  colorValue: string
+  valueType: string
 }
 
-export function CardTable({children}: CardTableProps) {
+export function CardTable({items, colorValue, valueType}: CardTableProps) {
   return (
     <table className="card-table">
-      <thead className="card-table-head">
-        <tr className="card-table-headers">
-          <th className="card-table-header">Nome</th>
-          <th className="card-table-header">Valor</th>
-        </tr>
-      </thead>
       <tbody className="card-table-body">
-        {children}
+        {items.map((item) => (
+          <tr key={item.nome}>
+            <td>{item.nome}</td>
+            <td className={colorValue}>{valueType} {formatCurrency(item.valor)}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   )
