@@ -1,12 +1,18 @@
 table {
   border-collapse: collapse;
-  width: 300px;
+  width: 100%;
+}
+
+tr {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
 }
 
 th,
 td {
   text-align: left;
-font-size: 14px;
+  font-size: 14px;
   border: none;
 }
 
