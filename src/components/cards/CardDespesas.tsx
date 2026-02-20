@@ -1,51 +1,18 @@
-import type { Valor } from "../../types/valor";
-import { formatCurrency } from "../../utils/formatCurrency";
-import { sumBy } from "../../utils/sumBy";
+import { useFinance } from "../../contexts/FinanceContext";
 import { CardTable } from "../CardTable";
+import { TotalDisplay } from "../TotalDisplay";
 import { Card } from "./Card";
 
-const despesas: Valor[] = [
-  {
-    nome: "Conta de telefone",
-    valor: 75,
-  },
-  {
-    nome: "Spotify",
-    valor: 45,
-  },
-  {
-    nome: "Dinheiro da viagem",
-    valor: 500,
-  },
-];
-
-const totalValueDespesas = sumBy(despesas, (d) => d.valor);
-
-const total = (
-  <div className="card-content">
-    Total Gasto:
-    <p className="card-despesas-text">{formatCurrency(totalValueDespesas)}</p>
-  </div>
-);
-
-const content = (
-  <CardTable>
-    {despesas.map((despesa) => (
-      <tr key={despesa.nome}>
-        <td>{despesa.nome}</td>
-        <td>{formatCurrency(despesa.valor)}</td>
-      </tr>
-    ))}
-  </CardTable>
-);
-
 export function CardDespesas() {
+  const {despesas} = useFinance()
+
   return (
     <Card
       title="Despesas Totais"
       subtitle="Adicione suas despesas aqui"
-      content={content}
-      total={total}
+      children="Últimas Transações"
+      content={<CardTable colorValue="card-despesas-text" valueType="-" items={despesas.valores}/>}
+      total={<TotalDisplay textClassName="card-despesas-text" displayType="Gasto" value={despesas.total} />}
     />
   );
 }
