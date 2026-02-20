@@ -2,7 +2,7 @@
 .card-container {
   background-color: #151521;
   width: 250px;
-  height: 300px;
+  height: fit-content;
   padding: 2rem;
   line-height: 32px;
   border-radius: 16px;
@@ -15,7 +15,7 @@
 .card-top {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 .card-title {
   font-weight: 600;
@@ -35,12 +35,17 @@
   color: white;
 }
 
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
 .btn-card {
   border: none;
   padding: 4px;
   border-radius: 6px;
   margin-top: 5px;
-  width: 80px;
+  width: fit-content;
   background-color: #7c3aed;
   color: white;
   transition: 0.2s ease;
