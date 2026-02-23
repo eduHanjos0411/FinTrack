@@ -1,15 +1,24 @@
 import type React from "react";
 
 import "../../styles/card.css";
+import { Button } from "../common/Button";
 interface cardProps {
-  title: string
-  subtitle: string
-  total: React.ReactNode
-  content?: React.ReactNode
-  children?: React.ReactNode
+  title: string;
+  subtitle: string;
+  total: React.ReactNode;
+  content?: React.ReactNode;
+  children?: React.ReactNode;
+  redirectTo: string;
 }
 
-export function Card({ title, subtitle, total, content, children }: cardProps) {
+export function Card({
+  title,
+  subtitle,
+  total,
+  content,
+  children,
+  redirectTo,
+}: cardProps) {
   return (
     <div className="card-container">
       <div className="card-top">
@@ -17,8 +26,16 @@ export function Card({ title, subtitle, total, content, children }: cardProps) {
         <h4 className="card-subtitle">{subtitle}</h4>
         <div className="card-total">{total}</div>
         <div className="card-actions">
-          <button className="btn-card">Adicionar</button>
-          <button className="btn-card">Ver detalhes</button>
+          <Button variant="btn btn-card" type="button">
+            Editar
+          </Button>
+          <Button
+            type="button"
+            onClick={() => (window.location.href = redirectTo)}
+            className="btn btn-card"
+          >
+            Ver detalhes
+          </Button>
         </div>
         <hr />
         <div className="card-bottom">

@@ -1,0 +1,72 @@
+.btn {
+  width: fit-content;
+  height: 3rem;
+  border: none;
+  font-size: 24px;
+  border-radius: 12px;
+  background-color: #7c3aed;
+  color: white;
+  transition: 0.2s ease;
+}
+
+.btn:hover {
+  box-shadow: 0px 1px 12px rgba(167, 139, 250, 0.4);
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+/** Backto Button **/
+
+.backto-btn {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  text-decoration: none;
+  color: white;
+  background-color: #6d28d9;
+  width: 12rem;
+  text-align: center;
+  align-content: center;
+  height: 2rem;
+  border-radius: 8px;
+  font-size: 18px;
+  transition: 0.2s ease;
+}
+
+.btn-backto-btn:hover {
+  background-color: #7c3aed;
+  transform: translateY(-2px);
+  cursor: pointer;
+  box-shadow: 0px 1px 12px rgba(167, 139, 250, 0.4);
+}
+
+/** Button form **/
+.btn-form {
+  width: fit-content;
+  padding: 10px;
+  height: fit-content;
+  border: none;
+  font-size: 24px;
+  border-radius: 12px;
+  background-color: #7c3aed;
+  color: white;
+  transition: 0.2s ease;
+}
+
+/** Cards Buttons **/
+.btn-card {
+  border: none;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 6px;
+  background-color: #7c3aed;
+  color: white;
+  transition: 0.2s ease;
+  text-decoration: none;
+  height: 2.5rem;
+}
+
+.card-btns:hover {
+  background-color: #8b5cf6;
+  cursor: pointer;
+}

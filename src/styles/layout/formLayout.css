@@ -1,4 +1,4 @@
-.container-login{
+.container-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,7 +12,7 @@
   left: 2rem;
   text-decoration: none;
   color: white;
-  background-color: #6D28D9;
+  background-color: #6d28d9;
   width: 12rem;
   text-align: center;
   align-content: center;
@@ -23,48 +23,21 @@
 }
 
 .backto-btn:hover {
-  background-color: #7C3AED;
+  background-color: #7c3aed;
   transform: translateY(-2px);
   cursor: pointer;
   box-shadow: 0px 1px 12px rgba(167, 139, 250, 0.4);
 }
 
-.form-login {
+.form-layout {
   background-color: #242438;
   width: 30rem;
-  height: 30rem;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 3rem;
-  gap: 5rem;
+  gap: 3rem;
   border-radius: 16px;
   box-shadow: 0px 1px 12px rgba(167, 139, 250, 0.4);
-
-}
-
-.login-form-input {
-  width: 25rem;
-  height: 2rem;
-  padding: 1rem;
-  font-size: 20px;
-  border-radius: 8px;
-  border: none;
-}
-
-.login-btn {
-  width: 12rem;
-  height: 3rem;
-  border: none;
-  font-size: 24px;
-  border-radius: 12px;
-  background-color: #7C3AED;
-  color: white;
-  transition: 0.2s ease;
-}
-
-.login-btn:hover {
-  box-shadow: 0px 1px 12px rgba(167, 139, 250, 0.4);
-  transform: translateY(-2px);
-  cursor: pointer;
 }

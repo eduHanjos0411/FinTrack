@@ -1,16 +1,16 @@
-import { Link } from 'react-router-dom'
-import '../styles/login.css'
+import { FormLayout } from "../layouts/FormLayout";
+import { Input } from "../components/common/Input";
+import { Button } from "../components/common/Button";
 
 export function Login() {
   return (
-    <div className='container-login'>
-    <Link className='backto-btn' to="/">Voltar para o início</Link>
-      <form className="form-login">
-        <h1 className="title-form-login">Bem vindo de volta!</h1>
-        <input className='login-form-input' type="text" placeholder="Digite seu usuário"/>
-        <input className='login-form-input' type="password" placeholder="Digite sua senha"/>
-        <button className="login-btn" type="submit">Login</button>
-      </form>
-    </div>
-  )
+    <FormLayout>
+      <h1 className="title-form-login">Bem vindo de volta!</h1>
+      <Input type="email" placeholder="Digite seu email" />
+      <Input type="password" placeholder="Digite sua senha" />
+      <Button variant="btn btn-form" type="submit">
+        Entrar
+      </Button>
+    </FormLayout>
+  );
 }

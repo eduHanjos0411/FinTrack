@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Input } from "../../../components/common/Input";
 
 interface AddValueModalProps {
   onAdd: (entrada: { nome: string; valor: number }) => void;
@@ -27,8 +28,7 @@ export function AddValueModal({ onAdd, onClose }: AddValueModalProps) {
     <div className="modal-overlay">
       <form className="add-value-modal-container" onSubmit={handleSubmit}>
         <p>Digite a entrada:</p>
-        <input
-          className="input-add-value-modal"
+        <Input
           type="text"
           value={nome}
           onChange={(e) => setNome(e.target.value)}
