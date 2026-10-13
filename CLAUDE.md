@@ -28,7 +28,10 @@ Regras de domínio que precisam ser preservadas:
 
 ## Arquitetura
 
-O estado inteiro (`FinanceState` em `src/types.ts`) vive no hook `useFinance` (`src/hooks/useFinance.ts`), que persiste no `localStorage` sob a chave `fintrack:v1`. Não há backend nem roteador. Mudanças no formato salvo exigem incrementar `version` e migrar em `loadState`.
+O estado inteiro (`FinanceState` em `src/types.ts`) é um único documento JSON por usuário, guardado no Supabase na tabela `finance_states` (`user_id`, `data jsonb`, com RLS; schema em `supabase/schema.sql`). Não há backend próprio nem roteador: o front fala direto com o Supabase (`lib/supabase.ts`, configurado por `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY` no `.env.local`). Mudanças no formato salvo exigem incrementar `version` e migrar em `parseState` (`lib/cloud.ts`).
+
+- **Fluxo:** `App` usa `useAuth` (login por e-mail/senha, recuperação de senha) e, com usuário logado, monta `Workspace` com `key={user.id}`. Ele usa `useCloudState`, que carrega o estado, salva com debounce a cada mudança (fila em `createSaver`: um envio por vez, sempre o estado mais recente, nova tentativa em caso de erro) e busca de novo ao voltar para a aba quando não há alteração local pendente. A última gravação vence. `Board` recebe o estado e o `update`, e o `useFinance(state, update)` só deriva e edita, sem persistir nada.
+- **Primeiro login:** se a conta não tem linha, `loadOrCreate` importa o localStorage antigo (`fintrack:v1`), apaga-o e cria a linha com `ignoreDuplicates`, para não sobrescrever o que outra aba tenha criado.
 
 Pontos que não ficam óbvios lendo um arquivo só:
 
