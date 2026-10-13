@@ -1,8 +1,9 @@
+import type { SyncStatus } from '../hooks/useCloudState'
 import type { Totals } from '../lib/finance'
 import { formatBRL } from '../lib/money'
 import { addMonths, currentMonthKey, monthName, monthYear } from '../lib/months'
 import type { Category, MonthKey } from '../types'
-import { ChevronLeftIcon, ChevronRightIcon } from './Icons'
+import { ChevronLeftIcon, ChevronRightIcon, LogOutIcon } from './Icons'
 import { SpendingBar } from './SpendingBar'
 
 interface HeroProps {
@@ -11,9 +12,18 @@ interface HeroProps {
   totals: Totals
   categories: Category[]
   copiedFrom: MonthKey | null
+  email: string
+  sync: SyncStatus
+  onSignOut: () => void
 }
 
-export function Hero({ month, onMonthChange, totals, categories, copiedFrom }: HeroProps) {
+const SYNC_LABELS: Record<SyncStatus, string> = {
+  saved: 'Salvo',
+  saving: 'Salvando…',
+  error: 'Sem conexão, tentando de novo',
+}
+
+export function Hero({ month, onMonthChange, totals, categories, copiedFrom, email, sync, onSignOut }: HeroProps) {
   const today = currentMonthKey()
 
   return (
@@ -71,6 +81,22 @@ export function Hero({ month, onMonthChange, totals, categories, copiedFrom }: H
               <dd className={totals.balance < 0 ? 'is-negative' : ''}>{formatBRL(totals.balance)}</dd>
             </div>
           </dl>
+
+          <div className="account">
+            <span className={`sync sync--${sync}`} role="status">
+              <span className="sync__dot" aria-hidden="true" />
+              {SYNC_LABELS[sync]}
+            </span>
+            <button
+              type="button"
+              className="icon-button icon-button--light"
+              aria-label={`Sair (${email})`}
+              title={`Sair (${email})`}
+              onClick={onSignOut}
+            >
+              <LogOutIcon />
+            </button>
+          </div>
         </div>
 
         <SpendingBar categories={categories} totals={totals} />

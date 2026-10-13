@@ -37,3 +37,7 @@ export function PlusIcon(props: IconProps) {
 export function CloseIcon(props: IconProps) {
   return <Svg {...props}><path d="M18 6L6 18M6 6l12 12" /></Svg>
 }
+
+export function LogOutIcon(props: IconProps) {
+  return <Svg {...props}><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" /></Svg>
+}

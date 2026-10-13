@@ -1,17 +1,69 @@
 import { useState } from 'react'
+import type { User } from '@supabase/supabase-js'
+import { AuthScreen, AuthShell, NewPasswordScreen } from './components/AuthScreen'
 import { CategoryPicker } from './components/CategoryPicker'
 import { Hero } from './components/Hero'
 import { InstallmentCounter } from './components/InstallmentCounter'
 import { PaymentToggle } from './components/PaymentToggle'
 import { Row } from './components/Row'
 import { Section } from './components/Section'
+import { useAuth } from './hooks/useAuth'
+import { useCloudState, type SyncStatus } from './hooks/useCloudState'
 import { useFinance } from './hooks/useFinance'
 import { createId } from './lib/id'
 import { formatBRL } from './lib/money'
-import type { MonthItem, MonthListKey } from './types'
+import { supabase } from './lib/supabase'
+import type { FinanceState, MonthItem, MonthListKey } from './types'
 
 export default function App() {
-  const finance = useFinance()
+  const { user, recovering, finishRecovery } = useAuth()
+
+  if (user === undefined) return <AuthShell><p className="auth__status">Carregando…</p></AuthShell>
+  if (!user) return <AuthScreen />
+  if (recovering) return <NewPasswordScreen onDone={finishRecovery} />
+  // A chave remonta tudo ao trocar de conta, sem sobrar estado do usuário anterior.
+  return <Workspace key={user.id} user={user} />
+}
+
+function Workspace({ user }: { user: User }) {
+  const cloud = useCloudState(user.id)
+
+  async function signOut() {
+    const saved = await cloud.flush()
+    if (!saved && !window.confirm('Algumas alterações ainda não foram salvas e serão perdidas. Sair mesmo assim?')) return
+    await supabase.auth.signOut()
+  }
+
+  if (cloud.status === 'error') {
+    return (
+      <AuthShell>
+        <p className="auth__error" role="alert">Não foi possível carregar seus dados.</p>
+        <button type="button" className="auth__submit" onClick={cloud.retry}>
+          Tentar de novo
+        </button>
+        <button type="button" className="auth__link" onClick={() => void supabase.auth.signOut()}>
+          Sair
+        </button>
+      </AuthShell>
+    )
+  }
+  if (!cloud.state) return <AuthShell><p className="auth__status">Carregando seus dados…</p></AuthShell>
+
+  return (
+    <Board state={cloud.state} update={cloud.update} email={user.email ?? ''} sync={cloud.sync} onSignOut={signOut} />
+  )
+}
+
+interface BoardProps {
+  state: FinanceState
+  update: (fn: (state: FinanceState) => FinanceState) => void
+  email: string
+  sync: SyncStatus
+  onSignOut: () => void
+}
+
+function Board({ state, update, email, sync, onSignOut }: BoardProps) {
+  const finance = useFinance(state, update)
   const { data, installments, totals, categories } = finance
   // Só o item recém-criado recebe foco, para não roubar o foco ao trocar de mês.
   const [lastAddedId, setLastAddedId] = useState<string | null>(null)
@@ -37,6 +89,9 @@ export default function App() {
         totals={totals}
         categories={categories}
         copiedFrom={finance.copiedFrom}
+        email={email}
+        sync={sync}
+        onSignOut={onSignOut}
       />
 
       <main className="board">
